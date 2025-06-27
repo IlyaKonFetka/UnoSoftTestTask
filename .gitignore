@@ -1,0 +1,23 @@
+# Maven
+target/
+dependency-reduced-pom.xml
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Результаты
+result.txt
+
+# Данные
+*.gz
+
+# Java
+*.class
+*.jar
+!target/string-grouper-*.jar
+
+# OS
+.DS_Store
+Thumbs.db 
