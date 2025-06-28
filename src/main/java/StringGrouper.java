@@ -65,12 +65,13 @@ public class StringGrouper {
         System.out.println("Невалидных строк: " + invalidLines);
         System.out.println("Уникальных строк: " + uniqueLines.size());
         
-        if (uniqueLines.size() > 200000) {
-            System.out.println("Слишком много строк для обработки в памяти 1GB. Ограничиваю до 200000 строк.");
+        // Для получения результата в рамках ограничений памяти 1GB
+        if (uniqueLines.size() > 300000) {
+            System.out.println("Ограничиваю до 300000 строк для получения результата в рамках 1GB памяти.");
             Set<String> limitedLines = new HashSet<>();
             int count = 0;
             for (String line : uniqueLines) {
-                if (count >= 200000) break;
+                if (count >= 300000) break;
                 limitedLines.add(line);
                 count++;
             }
@@ -162,6 +163,9 @@ public class StringGrouper {
     
     private void writeGroupsToFile(List<List<String>> groups) throws IOException {
         try (PrintWriter writer = new PrintWriter(new FileWriter("result.txt", false), true)) {
+            writer.println("Количество групп с более чем одним элементом: " + groups.size());
+            writer.println();
+            
             for (int i = 0; i < groups.size(); i++) {
                 writer.println("Группа " + (i + 1));
                 for (String line : groups.get(i)) {
